@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'messaging/user.css' %}">
+</head>
+<body>
+  <h1>Create an account</h1>
+  <form class="content" method="post">
+    {% csrf_token %}
+
+    <div class="inputbox">
+        <label>Username:</label>
+        {{ form.username }}
+    </div>
+    
+    <div class="inputbox">
+        <label>Password:</label>
+        {{ form.password1 }}
+    </div>
+
+    <div class="inputbox">
+        <label>Confirm password:</label>
+        {{ form.password2 }}
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+  <p>Already have an account?  <a href="/accounts/login/">Log in</a></p>
+</body>
+</html>

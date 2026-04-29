@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Messages</title>
+    <link rel="stylesheet" href="{% static 'messaging/inbox.css' %}">
+</head>
+<body>
+  <h2>Messages — {{ request.user.username }}</h2>
+  <a href="/accounts/login/">Log out</a>
+
+  <h3>Start a new chat</h3>
+  <form method="get">
+    <input name="q" value="{{ query }}" placeholder="Search username…">
+    <button type="submit">Search</button>
+  </form>
+
+  {% if results %}
+    <ul>
+      {% for user in results %}
+        <li><a href="{% url 'chat' user.username %}">{{ user.username }}</a></li>
+      {% endfor %}
+    </ul>
+  {% elif query %}
+    <p>No users found.</p>
+  {% endif %}
+
+  {% if chat_users %}
+    <h3>Your conversations</h3>
+    <ul>
+      {% for user in chat_users %}
+        <li><a href="{% url 'chat' user.username %}">{{ user.username }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</body>
+</html>
