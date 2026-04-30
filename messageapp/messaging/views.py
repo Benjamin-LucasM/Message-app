@@ -55,3 +55,10 @@ def chat(request, username):
         'other': other,
         'messages': messages,
     })
+
+@login_required
+def delete_message(request, message_id):
+    message = get_object_or_404(Message, id=message_id, sender=request.user)
+    other_username = message.receiver.username
+    message.delete()
+    return redirect('chat', username=other_username)

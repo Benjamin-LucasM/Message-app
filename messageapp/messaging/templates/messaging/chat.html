@@ -15,12 +15,22 @@
   <div class="chat-box">
     {% for msg in messages %}
       {% if msg.sender == request.user %}
-        <div class="message-own">
+        <div class="message message-own">
       {% else %}
-        <div class="message-other">
+        <div class="message message-other">
       {% endif %}
-          <strong>{{ msg.sender.username }}</strong>
-          <small>{{ msg.timestamp|date:"H:i" }}</small><br>
+          <div class="totalinfo">
+            <strong>{{ msg.sender.username }}</strong>
+            <div class="infomessage">
+              <small>{{ msg.timestamp|date:"H:i" }}</small><br>
+              {% if msg.sender == request.user %}
+                <form method="post" action="{% url 'delete_message' msg.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="delete-btn">Delete</button>
+                </form>
+              {% endif %}
+            </div>
+          </div>
           {{ msg.body }}
         </div>
     {% empty %}

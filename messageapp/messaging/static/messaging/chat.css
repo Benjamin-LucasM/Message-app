@@ -55,6 +55,32 @@ header h1 {
     overflow-y: auto;
 }
 
+.totalinfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5rem;
+}
+
+.infomessage {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 3px;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 2px;
+}
+
+.delete-btn:hover {
+    color: rgb(144, 0, 0);
+}
+
 .message {
     padding: 1rem;
     border-radius: 10px;
