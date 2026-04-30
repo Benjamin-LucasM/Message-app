@@ -10,10 +10,18 @@
 
 **Run server**
 
+`screen -S messageapp`
+`cd ..`
 `source .venv/bin/activate`
-`python3 manage.py runserver`
+`cd messageapp/`
+`python3 manage.py runserver <ip-adress>:port`
+press ctrl + a 
+press d
+`exit`
 
 **Shut down**
 
-sudo lsof -i :8080
-
+`screen -r messageapp`
+press ctrl + c
+press ctrl + a
+press d
