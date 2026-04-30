@@ -6,22 +6,29 @@
     <link rel="stylesheet" href="{% static 'messaging/chat.css' %}">
 </head>
 <body>
-  <h2>Chat with {{ other.username }}</h2>
-  <a href="{% url 'inbox' %}">← Back</a>
+  <header>
+    <p></p>
+    <h1> Chat with {{ other.username }}</h1>
+    <a href="{% url 'inbox' %}">← Back</a>
+  </header>
 
-  <div style="border:1px solid #ccc; padding:1rem; max-height:400px; overflow-y:auto;">
+  <div class="chat-box">
     {% for msg in messages %}
-      <p>
-        <strong>{{ msg.sender.username }}</strong>
-        <small>{{ msg.timestamp|date:"H:i" }}</small><br>
-        {{ msg.body }}
-      </p>
+      {% if msg.sender == request.user %}
+        <div class="message-own">
+      {% else %}
+        <div class="message-other">
+      {% endif %}
+          <strong>{{ msg.sender.username }}</strong>
+          <small>{{ msg.timestamp|date:"H:i" }}</small><br>
+          {{ msg.body }}
+        </div>
     {% empty %}
       <p>No messages yet. Say hello!</p>
     {% endfor %}
   </div>
 
-  <form method="post">
+  <form class="message-form" method="post">
     {% csrf_token %}
     <textarea name="body" rows="3" placeholder="Type a message…" style="width:100%"></textarea><br>
     <button type="submit">Send</button>

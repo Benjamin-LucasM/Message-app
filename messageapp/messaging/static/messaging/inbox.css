@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(205, 205, 255);
+}
+
+header {
+    display: flex;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+header a {
+    font-size: large;
+    background-color: rgb(100, 100, 255);
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+header a:hover {
+    background-color: rgb(59, 59, 245);
+}
+
+.mid-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chat {
+    margin: 2rem;
+    display: flex;
+    gap: 2rem
+}
+
+.newchat {
+    background-color: rgb(255, 255, 255);
+    padding: 2rem;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.exsistingchat {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    flex: 1;
+}

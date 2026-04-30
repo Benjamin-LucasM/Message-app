@@ -6,32 +6,43 @@
     <link rel="stylesheet" href="{% static 'messaging/inbox.css' %}">
 </head>
 <body>
-  <h2>Messages — {{ request.user.username }}</h2>
-  <a href="/accounts/login/">Log out</a>
+  <header>
+    <p></p>
+    <div class="mid-header">
+      <h1>Messages</h1>
+      <h2>Welcome {{ request.user.username }}</h2>
+    </div>
+    <a href="/accounts/login/">Log out</a>
+  </header>
+  <div class="chat">
+    <div class="newchat">
+      <h3>Start a new chat</h3>
+      <form method="get">
+        <input name="q" value="{{ query }}" placeholder="Search username…">
+        <button type="submit">Search</button>
+      </form>
+    </div>
 
-  <h3>Start a new chat</h3>
-  <form method="get">
-    <input name="q" value="{{ query }}" placeholder="Search username…">
-    <button type="submit">Search</button>
-  </form>
+    <div class="exsistingchat">
+      {% if results %}
+        <ul>
+          {% for user in results %}
+            <li><a href="{% url 'chat' user.username %}">{{ user.username }}</a></li>
+          {% endfor %}
+        </ul>
+      {% elif query %}
+        <p>No users found.</p>
+      {% endif %}
 
-  {% if results %}
-    <ul>
-      {% for user in results %}
-        <li><a href="{% url 'chat' user.username %}">{{ user.username }}</a></li>
-      {% endfor %}
-    </ul>
-  {% elif query %}
-    <p>No users found.</p>
-  {% endif %}
-
-  {% if chat_users %}
-    <h3>Your conversations</h3>
-    <ul>
-      {% for user in chat_users %}
-        <li><a href="{% url 'chat' user.username %}">{{ user.username }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+      {% if chat_users %}
+        <h3>Your conversations</h3>
+        <ul>
+          {% for user in chat_users %}
+            <li><a href="{% url 'chat' user.username %}">{{ user.username }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
 </body>
 </html>
