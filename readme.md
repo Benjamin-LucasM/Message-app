@@ -21,11 +21,7 @@
 
 `screen -S messageapp`
 
-`cd ..`
-
 `source .venv/bin/activate`
-
-`cd messageapp/`
 
 `python3 manage.py runserver <ip-adress>:port`
 
@@ -46,3 +42,7 @@ press ctrl + c
 press ctrl + a
 
 press d
+
+`screen -ls`
+
+`screen -X -S <id> quit`
